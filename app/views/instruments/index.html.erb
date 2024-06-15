@@ -1,4 +1,23 @@
 <h1>トップページ</h1>
 
-<%= link_to 'ログイン', new_user_session_path, class: "login" %>
-<%= link_to '新規登録', new_user_registration_path, class: "sign-up" %>
+<% if user_signed_in? %>
+  <%= link_to "#{current_user.last_name + " " + current_user.first_name}", "#", class: "user-name" %>
+  <%= link_to 'ログアウト', destroy_user_session_path, data: {turbo_method: :delete}, class: "logout" %>
+<% else %>
+  <%= link_to 'ログイン', new_user_session_path, class: "login" %>
+  <%= link_to '新規登録', new_user_registration_path, class: "sign-up" %>
+<% end %>
+
+<div class="d-flex gap-2 justify-content-center py-5">
+  <button class="btn btn-primary rounded-pill px-3" type="button">Primary</button>
+  <button class="btn btn-secondary rounded-pill px-3" type="button">Secondary</button>
+  <button class="btn btn-success rounded-pill px-3" type="button">Success</button>
+  <button class="btn btn-danger rounded-pill px-3" type="button">Danger</button>
+  <button class="btn btn-warning rounded-pill px-3" type="button">Warning</button>
+  <button class="btn btn-info rounded-pill px-3" type="button">Info</button>
+  <button class="btn btn-light rounded-pill px-3" type="button">Light</button>
+  <button class="btn btn-dark rounded-pill px-3" type="button">Dark</button>
+  <button class="btn btn-link rounded-pill px-3" type="button">Link</button>
+</div>
+
+

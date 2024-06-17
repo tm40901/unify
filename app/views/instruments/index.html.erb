@@ -3,21 +3,36 @@
 <% if user_signed_in? %>
   <%= link_to "#{current_user.last_name + " " + current_user.first_name}", "#", class: "user-name" %>
   <%= link_to 'ログアウト', destroy_user_session_path, data: {turbo_method: :delete}, class: "logout" %>
+  <%= link_to "計測器登録", new_instrument_path, class: "register" %>
 <% else %>
   <%= link_to 'ログイン', new_user_session_path, class: "login" %>
   <%= link_to '新規登録', new_user_registration_path, class: "sign-up" %>
 <% end %>
 
-<div class="d-flex gap-2 justify-content-center py-5">
-  <button class="btn btn-primary rounded-pill px-3" type="button">Primary</button>
-  <button class="btn btn-secondary rounded-pill px-3" type="button">Secondary</button>
-  <button class="btn btn-success rounded-pill px-3" type="button">Success</button>
-  <button class="btn btn-danger rounded-pill px-3" type="button">Danger</button>
-  <button class="btn btn-warning rounded-pill px-3" type="button">Warning</button>
-  <button class="btn btn-info rounded-pill px-3" type="button">Info</button>
-  <button class="btn btn-light rounded-pill px-3" type="button">Light</button>
-  <button class="btn btn-dark rounded-pill px-3" type="button">Dark</button>
-  <button class="btn btn-link rounded-pill px-3" type="button">Link</button>
+
+<h1>計測器リスト</h1>
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">管理番号</th>
+        <th scope="col">計測器名</th>
+        <th scope="col">管理者</th>
+        <th scope="col">点検者</th>
+        <th scope="col">点検日</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @instruments.each do |instrument| %>
+        <tr>
+          <td><%= link_to instrument.management_number, instrument_path(instrument.id) %></td>
+          <td><%= instrument.name %></td>
+          <td><%= instrument.admin.last_name %> <%= instrument.admin.first_name %></td>
+          <td><%= instrument.inspector.last_name %> <%= instrument.inspector.first_name %></td>
+          <td><%= instrument.last_inspected_at.present? ? instrument.last_inspected_at.strftime("%Y-%m-%d") : '未点検' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-

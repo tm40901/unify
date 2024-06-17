@@ -5,3 +5,5 @@
 //= require bootstrap-sprockets
 import "@hotwired/turbo-rails"
 import "controllers"
+import "search"
+import "sort_table"

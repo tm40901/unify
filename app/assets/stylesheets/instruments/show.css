@@ -1,0 +1,18 @@
+.table_design {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 700px;
+}
+
+.table_design th, .table_design td {
+  padding: 1em;
+}
+
+.table_design th {
+  border-right: 1px solid #4d9bc1;
+  font-weight: bold;
+  text-align: left;
+  width: 20%;
+  min-width: 4em;
+}
+      

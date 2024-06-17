@@ -1,6 +1,8 @@
 const sort_table = () => {
+  const table = document.querySelector('.sortable-table');
+  if (!table) return; // sortable-tableクラスがない場合はスキップ
 
-  document.querySelectorAll('th').forEach(th => {
+  table.querySelectorAll('th').forEach(th => {
     th.addEventListener('click', () => {
       const table = th.closest('table');
       const index = Array.from(th.parentNode.children).indexOf(th);
@@ -10,12 +12,12 @@ const sort_table = () => {
         .sort(comparer(index, ascending))
         .forEach(tr => table.querySelector('tbody').appendChild(tr));
 
-      // Remove sort classes from other headers
+      // 他のヘッダーからソートクラスを削除
       Array.from(th.parentNode.children).forEach(cell => {
         if (cell !== th) cell.classList.remove('th-sort-asc', 'th-sort-desc');
       });
 
-      // Toggle the current header's class
+      // 現在のヘッダーのクラスを切り替え
       if (!ascending) {
         th.classList.add('th-sort-desc');
       } else {
@@ -36,4 +38,3 @@ const sort_table = () => {
 };
 
 window.addEventListener("turbo:load", sort_table);
-window.addEventListener("turbo:render", sort_table);

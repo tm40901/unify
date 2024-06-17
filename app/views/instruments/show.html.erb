@@ -1,20 +1,42 @@
-<table class="table_design04">
-  <tbody>
-    <tr>
-      <th>会社名</th>
-      <td>○○株式会社</td>
-    </tr>
-    <tr>
-      <th>設立</th>
-      <td>20XX年X月X日</td>
-    </tr>
-    <tr>
-      <th>住所</th>
-      <td>東京都○○区△△町</td>
-    </tr>
-    <tr>
-      <th>電話番号</th>
-      <td>00-0000-00000</td>
-    </tr>
-  </tbody>
-</table>
+<h1>計測器詳細</h1>
+<div class="instrument-show">
+  <div class="instrument-box">
+    <div class="created_date">
+      登録日： <%= @instrument.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+    </div>
+    <div class="updated_date">
+      更新日： <%= @instrument.updated_at.strftime('%Y年%m月%d日 %H時%M分') %>
+    </div>
+  </div>
+
+  <table class="table_design">
+    <tbody>
+      <tr>
+        <th>管理番号</th>
+        <td><%= @instrument.management_number %></td>
+        <th>管理者</th>
+        <td><%= @instrument.admin.last_name + " " + @instrument.admin.first_name %></td>
+      </tr>
+      <tr>
+        <th>計測器名</th>
+        <td><%= @instrument.name %></td>
+        <th>点検者</th>
+        <td><%= @instrument.inspector.last_name + " " + @instrument.inspector.first_name %></td>
+      </tr>
+      <tr>
+        <th>メーカー</th>
+        <td><%= @instrument.manufacturer %></td>
+        <th>点検日</th>
+        <td><%= @instrument.last_inspected_at ? @instrument.last_inspected_at : '未点検' %></td>
+      </tr>
+      <tr>
+        <th>型式</th>
+        <td><%= @instrument.model %></td>
+      </tr>
+      <tr>
+        <th>製造番号</th>
+        <td><%= @instrument.serial_number %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

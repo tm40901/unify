@@ -1,6 +1,6 @@
 class InstrumentsController < ApplicationController
   def index
-    @instruments = Instrument.includes(:admin, :inspector)
+    @instruments = Instrument.includes(:admin, :inspector).order("created_at DESC")
   end
 
   def new

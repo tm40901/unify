@@ -38,3 +38,4 @@ const sort_table = () => {
 };
 
 window.addEventListener("turbo:load", sort_table);
+window.addEventListener("turbo:render", sort_table);

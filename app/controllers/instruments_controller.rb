@@ -25,6 +25,7 @@ class InstrumentsController < ApplicationController
 
   def show
     @instrument = Instrument.find(params[:id])
+
   end
 
   def load_inspectors

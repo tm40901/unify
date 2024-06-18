@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_15_141907) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_17_053028) do
+  create_table "inspection_items", charset: "utf8", force: :cascade do |t|
+    t.bigint "instrument_id", null: false
+    t.string "item", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["instrument_id"], name: "index_inspection_items_on_instrument_id"
+  end
+
   create_table "instruments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "admin_id", null: false
@@ -43,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_15_141907) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "inspection_items", "instruments"
   add_foreign_key "instruments", "users", column: "admin_id"
   add_foreign_key "instruments", "users", column: "inspector_id"
 end

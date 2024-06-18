@@ -40,3 +40,31 @@
     </tbody>
   </table>
 </div>
+
+<h2>点検項目一覧</h2>
+<%= form_with(model: [@instrument, InspectionItem.new], local: true) do |form| %>
+  <div class="mb-3">
+    <%= form.label :item, "点検項目", class: "form-label" %>
+    <%= form.text_field :item, placeholder: "点検項目を入力", class: "form-control" %>
+  </div>
+  <%= form.submit "点検項目を追加", class: "btn btn-primary mb-4" %>
+<% end %>
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="table-info">
+      <tr>
+        <th>No.</th>
+        <th>点検内容</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <% @instrument.inspection_items.reload.each_with_index do |item, index| %>
+        <tr>
+          <td class="item-number"><%= index + 1 %></td>
+          <td><%= item.item %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

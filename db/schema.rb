@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_17_053028) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_18_054734) do
   create_table "inspection_items", charset: "utf8", force: :cascade do |t|
     t.bigint "instrument_id", null: false
     t.string "item", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["instrument_id"], name: "index_inspection_items_on_instrument_id"
+  end
+
+  create_table "inspection_results", charset: "utf8", force: :cascade do |t|
+    t.bigint "instrument_id", null: false
+    t.string "result", null: false
+    t.text "remarks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["instrument_id"], name: "index_inspection_results_on_instrument_id"
   end
 
   create_table "instruments", charset: "utf8", force: :cascade do |t|
@@ -52,6 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_17_053028) do
   end
 
   add_foreign_key "inspection_items", "instruments"
+  add_foreign_key "inspection_results", "instruments"
   add_foreign_key "instruments", "users", column: "admin_id"
   add_foreign_key "instruments", "users", column: "inspector_id"
 end

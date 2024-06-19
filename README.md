@@ -48,13 +48,13 @@
 ## inspection_results テーブル
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
-| inspection_item       | references | null: false, foreign_key: true |
-| status                | string     | null: false                    |
-| details               | text       |                                |
+| instrument            | references | null: false, foreign_key: true |
+| result                | string     | null: false                    |
+| remarks               | text       |                                |
 | inspection_submission | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :inspection_item
+- belongs_to :instrument
 - belongs_to :inspection_submission
 
 

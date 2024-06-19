@@ -8,7 +8,6 @@ class InspectionItemsController < ApplicationController
       redirect_to instrument_path(@instrument.id), notice: "点検項目が追加されました。"
     else
       flash.now[:alert] = "点検項目を入力してください。"
-
       render "instruments/show", status: :unprocessable_entity
     end
   end

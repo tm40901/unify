@@ -42,13 +42,18 @@
 </div>
 
 <h2>点検項目一覧</h2>
-<%= form_with(model: [@instrument, InspectionItem.new], local: true) do |form| %>
+<%= form_with model: [@instrument, @inspection_item], local: true do |f| %>
   <div class="mb-3">
-    <%= form.label :item, "点検項目", class: "form-label" %>
-    <%= form.text_field :item, placeholder: "点検項目を入力", class: "form-control" %>
+    <%= f.label :item, "点検項目", class: "form-label" %>
+    <%= f.text_field :item, placeholder: "点検項目を入力", class: "form-control" %>
   </div>
-  <%= form.submit "点検項目を追加", class: "btn btn-primary mb-4" %>
+  <%= f.submit "点検項目を追加", class: "btn btn-primary mb-4" %>
 <% end %>
+
+<div class="mb-3">
+  <%= link_to "点検", new_instrument_inspection_result_path(@instrument.id), class: "btn btn-warning" %>
+  <%= link_to "点検履歴", instrument_inspection_results_path(@instrument.id), class: "btn btn-info" %>
+</div>
 
 <div class="table-responsive">
   <table class="table table-hover">

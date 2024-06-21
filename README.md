@@ -31,6 +31,7 @@
 ### Association
 - belongs_to :user
 - has_many :inspection_items
+- has_many :inspection_results
 - has_many :inspection_submissions
 
 
@@ -49,12 +50,13 @@
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
 | instrument            | references | null: false, foreign_key: true |
+| inspection_item       | references | null: false, foreign_key: true |
 | result                | string     | null: false                    |
-| remarks               | text       |                                |
 | inspection_submission | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :instrument
+- belongs_to :inspection_item
 - belongs_to :inspection_submission
 
 

@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   root to: "instruments#index"
 
   resources :instruments do
-    resources :inspection_items, only: [:create]
-    resources :inspection_results, only: [:new, :create, :index]
     collection do
       get :load_inspectors
     end  
+    resources :inspection_items, only: [:create]
+    resources :inspection_results, only: [:index, :new, :create, :show]
   end
 end

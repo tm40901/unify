@@ -21,10 +21,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_18_054734) do
 
   create_table "inspection_results", charset: "utf8", force: :cascade do |t|
     t.bigint "instrument_id", null: false
+    t.bigint "inspection_item_id", null: false
+    t.bigint "inspector_id", null: false
     t.string "result", null: false
-    t.text "remarks"
+    t.string "custom_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["inspection_item_id"], name: "index_inspection_results_on_inspection_item_id"
+    t.index ["inspector_id"], name: "index_inspection_results_on_inspector_id"
     t.index ["instrument_id"], name: "index_inspection_results_on_instrument_id"
   end
 
@@ -41,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_18_054734) do
     t.datetime "updated_at", null: false
     t.index ["admin_id"], name: "index_instruments_on_admin_id"
     t.index ["inspector_id"], name: "index_instruments_on_inspector_id"
+    t.index ["management_number"], name: "index_instruments_on_management_number", unique: true
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|
@@ -61,7 +66,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_18_054734) do
   end
 
   add_foreign_key "inspection_items", "instruments"
+  add_foreign_key "inspection_results", "inspection_items"
   add_foreign_key "inspection_results", "instruments"
+  add_foreign_key "inspection_results", "users", column: "inspector_id"
   add_foreign_key "instruments", "users", column: "admin_id"
   add_foreign_key "instruments", "users", column: "inspector_id"
 end

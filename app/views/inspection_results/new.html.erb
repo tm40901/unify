@@ -1,25 +1,28 @@
-<h2>点検結果入力</h2>
+<h5><%= @instrument.name %>の点検項目</h5>
+
 <%= form_with model: [@instrument, @inspection_result], local: true do |f| %>
   <table class="table table-hover">
     <thead class="table-info">
       <tr>
         <th>No.</th>
-        <th>点検内容</th>
-        <th>点検結果</th>
+        <th>点検項目</th>
+        <th>結果</th>
       </tr>
     </thead>
     <tbody>
       <% @inspection_items.each_with_index do |item, index| %>
-        <tr>
-          <td><%= index + 1 %></td>
-          <td><%= item.item %></td>
-          <td>
-            <%= check_box_tag false %>
-          </td>
-        </tr>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= item.item %></td>
+            <td>
+              <%= hidden_field_tag "inspection_result[results][#{item.id}]", "0" %>
+              <%= check_box_tag "inspection_result[results][#{item.id}]", "1" %>
+            </td>
+          </tr>
       <% end %>
     </tbody>
   </table>
-  <%= f.hidden_field :result, value: "合格" %>
-  <%= submit_tag "保存", class: "btn btn-primary" %>
+  <%= f.submit "保存", class: "btn btn-primary" %>
 <% end %>
+
+<%= link_to '戻る', instruments_path %>

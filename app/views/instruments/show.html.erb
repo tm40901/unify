@@ -27,7 +27,7 @@
         <th>メーカー</th>
         <td><%= @instrument.manufacturer %></td>
         <th>点検日</th>
-        <td><%= @instrument.last_inspected_at ? @instrument.last_inspected_at : '未点検' %></td>
+        <td><%= @instrument.last_inspected_at ? l(@instrument.last_inspected_at) : '未点検' %></td>
       </tr>
       <tr>
         <th>型式</th>

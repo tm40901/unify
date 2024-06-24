@@ -6,6 +6,7 @@ class CreateInspectionResults < ActiveRecord::Migration[7.0]
       t.references :inspector,       null: false, foreign_key: { to_table: :users }
       t.string     :result,          null: false
       t.string     :custom_id,       null: false
+      t.string     :status,          null: false
       t.timestamps
     end
   end

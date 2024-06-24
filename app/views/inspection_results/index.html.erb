@@ -12,7 +12,7 @@
   <tbody>
     <% @inspection_results.each do |custom_id, results| %>
       <tr>
-        <td><%= custom_id %></td>
+        <td><%= link_to custom_id, inspection_result_path(custom_id) %></td>
         <td><%= results.first.instrument.name %></td>
         <td><%= results.first.inspector.last_name + " " + results.first.inspector.first_name %></td>
         <td><%= l results.first.created_at %></td>

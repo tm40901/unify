@@ -6,5 +6,6 @@ class InspectionResult < ApplicationRecord
   with_options presence: true do
     validates :result, inclusion: { in: ["Pass", "Fail"] }
     validates :custom_id
+    validates :status
   end
 end

@@ -1,0 +1,33 @@
+<h1>点検結果詳細</h1>
+
+<p><strong>ID:</strong> <%= @inspection_results.first.custom_id %></p>
+<p><strong>計測器:</strong> <%= @inspection_results.first.instrument.name %></p>
+<p><strong>点検者:</strong> <%= @inspection_results.first.inspector.last_name + " " + @inspection_results.first.inspector.first_name %></p>
+<p><strong>点検日時:</strong> <%= l @inspection_results.first.created_at %></p>
+
+<h2>点検項目と結果</h2>
+<table class="table table-hover">
+  <thead class="table-info">
+    <tr>
+      <th>No.</th>
+      <th>点検項目</th>
+      <th>結果</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @inspection_results.each_with_index do |result, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= result.inspection_item.item %></td>
+        <td><%= result.result %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @inspection_results.first.status == 'pending' %>
+  <%= button_to '承認する', approve_instrument_inspection_result_path(@inspection_results.first.instrument_id, @inspection_results.first.id), method: :patch, class: "btn btn-success" %>
+  <%= button_to '承認する', approve_instrument_inspection_result_path(@inspection_results.first.instrument_id, @inspection_results.first.custom_id), method: :patch, class: "btn btn-success" %>
+<% else %>
+  <p><strong>承認ステータス:</strong> <%= @inspection_results.first.status %></p>
+<% end %>

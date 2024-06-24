@@ -7,6 +7,11 @@ Rails.application.routes.draw do
       get :load_inspectors
     end  
     resources :inspection_items, only: [:create]
-    resources :inspection_results, only: [:index, :new, :create, :show]
+    resources :inspection_results, only: [:index, :new, :create] do
+      member do
+        patch :approve
+      end
+    end
   end
+  resources :inspection_results, only: [:show]
 end

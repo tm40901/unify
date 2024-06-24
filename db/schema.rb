@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_18_054734) do
     t.bigint "inspector_id", null: false
     t.string "result", null: false
     t.string "custom_id", null: false
+    t.string "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["inspection_item_id"], name: "index_inspection_results_on_inspection_item_id"

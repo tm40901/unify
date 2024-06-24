@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  has_many :admin_instruments, class_name: "Instrument", foreign_key: "admin_id"
+  has_many :admin_instruments,     class_name: "Instrument", foreign_key: "admin_id"
   has_many :inspector_instruments, class_name: "Instrument", foreign_key: "inspector_id"
+
   has_many :inspector_inspection_results, class_name: "InspectionResult", foreign_key: "inspector_id"
   
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable

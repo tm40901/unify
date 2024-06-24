@@ -13,6 +13,7 @@
 
 ### Association
 - has_many :instruments
+- has_many :inspection_results
 - has_many :inspection_submissions
 
 
@@ -47,16 +48,19 @@
 
 
 ## inspection_results テーブル
-| Column                | Type       | Options                        |
-| --------------------- | ---------- | ------------------------------ |
-| instrument            | references | null: false, foreign_key: true |
-| inspection_item       | references | null: false, foreign_key: true |
-| result                | string     | null: false                    |
+| Column                | Type       | Options                                       |
+| --------------------- | ---------- | --------------------------------------------- |
+| instrument            | references | null: false, foreign_key: true                |
+| inspection_item       | references | null: false, foreign_key: true                |
+| inspector             | references | null: false, foreign_key: { to_table: users } |
+| result                | string     | null: false                                   |
+| custom_id             | string     | null: false                                   |
 | inspection_submission | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :instrument
 - belongs_to :inspection_item
+- belongs_to :user
 - belongs_to :inspection_submission
 
 

@@ -6,6 +6,4 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "search"
-import "sort_table"
-import "flash"
 import "sidebar_toggle"

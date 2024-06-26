@@ -9,6 +9,4 @@ pin "bootstrap", to: "https://ga.jspm.io/npm:bootstrap@5.2.3/dist/js/bootstrap.e
 pin "@popperjs/core", to: "https://ga.jspm.io/npm:@popperjs/core@2.11.6/lib/index.js"
 
 pin "search", to: "search.js"
-pin "sort_table", to: "sort_table.js"
-pin "flash", to: "flash.js"
 pin "sidebar_toggle", to: "sidebar_toggle.js"

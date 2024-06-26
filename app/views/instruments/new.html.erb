@@ -1,102 +1,98 @@
-<%= form_with model: @instrument, local: true do |f| %>
-<div class="form-wrap">
-  <div class="form-header">
-    <h1 class='form-header-text'>
-      計測器登録
-    </h1>
-  </div>
-  
-  <%= render 'shared/error_messages', model: f.object %>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">管理者</label>
+<div class="wrapper">
+  <%= render "shared/header" %>
+  <div class="content">
+    <%= render "shared/sidebar" %>
+    <div class="main">
+      <div class="form-header">
+        <h1 class='form-header-text'>計測器新規登録</h1>
+      </div>
+      <%= form_with model: @instrument, local: true do |f| %>
+      <div class="form-wrap">
+        <table class="table_design">
+          <tbody>
+            <tr>
+              <th>管理者</th>
+              <td>
+                <%= text_field_tag :admin_employee_number_field, current_user.employee_number, readonly: true, class: "input-number" %>
+                <%= text_field_tag :admin_name_field, "#{current_user.last_name + " " + current_user.first_name}", readonly: true, class:"input-default" %>
+              </td>
+            </tr>
+            <tr>
+              <th>点検者<span class="indispensable">必須</span></th>
+              <td>
+                <%= text_field_tag :inspector_employee_number_field, params[:inspector_employee_number_field], readonly: true, class: "input-number" %>
+                <%= text_field_tag :inspector_name_field, params[:inspector_name_field], readonly: true, class:"input-default" %>
+                <button type="button" id="search_inspector_button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inspectorModal">検索</button>
+              </td>
+            </tr>
+            <tr>
+              <th>管理番号</th>
+              <td>
+                <%= f.text_field :management_number, class:"input-default", id:"management-number" %>
+              </td>
+            </tr>
+            <tr>
+              <th>計測器名</th>
+              <td>
+              <%= f.text_field :name, class:"input-default", id:"name" %>
+              </td>
+            </tr>
+            <tr>
+              <th>メーカー</th>
+              <td>
+                <%= f.text_field :manufacturer, class:"input-default", id:"manufacturer" %>
+              </td>
+            </tr>
+            <tr>
+              <th>型式</th>
+              <td>
+                <%= f.text_field :model, class:"input-default", id:"model" %>
+              </td>
+            </tr>
+            <tr>
+              <th>製造番号</th>
+              <td>
+                <%= f.text_field :serial_number, class:"input-default", id:"serial-number" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class='register-btn'>
+          <%= f.submit "新規登録", class:"btn btn-success btn-lg" %>
+        </div>
+      </div>
+      <% end %>
     </div>
-    <%= text_field_tag :admin_employee_number_field, current_user.employee_number, readonly: true %>
-    <%= text_field_tag :admin_name_field, "#{current_user.last_name + " " + current_user.first_name}", readonly: true %>
   </div>
+</div>
 
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">点検者</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= text_field_tag :inspector_employee_number_field, params[:inspector_employee_number_field], readonly: true %>
-    <%= text_field_tag :inspector_name_field, params[:inspector_name_field], readonly: true %>
-    <!-- 検索ボタン -->
-  <button type="button" id="search_inspector_button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inspectorModal">検索</button>
-  </div>
-
-  <!-- モーダルウィンドウ -->
-  <div class="modal fade" id="inspectorModal" tabindex="-1" aria-labelledby="inspectorModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="inspectorModalLabel">点検者を選択</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>社員番号</th>
-                <th>姓</th>
-                <th>名</th>
-                <th>所属部署</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody id="inspector_list">
-              <!-- ユーザー一覧を表示 -->
-            </tbody>
-          </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-        </div>
+<!-- モーダルウィンドウ -->
+<div class="modal fade" id="inspectorModal" tabindex="-1" aria-labelledby="inspectorModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="inspectorModalLabel">点検者を選択</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>社員番号</th>
+              <th>姓</th>
+              <th>名</th>
+              <th>所属部署</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="inspector_list">
+            <!-- ユーザー一覧を表示 -->
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
       </div>
     </div>
   </div>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">管理番号</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.text_field :management_number, class:"input-default", id:"management-number", placeholder:"" %>
-  </div>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">計測器名</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.text_field :name, class:"input-default", id:"name", placeholder:"" %>
-  </div>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">メーカー</label>
-    </div>
-    <%= f.text_field :manufacturer, class:"input-default", id:"manufacturer", placeholder:"" %>
-  </div>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">型式</label>
-    </div>
-    <%= f.text_field :model, class:"input-default", id:"model", placeholder:"" %>
-  </div>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">製造番号</label>
-    </div>
-    <%= f.text_field :serial_number, class:"input-default", id:"serial-number", placeholder:"" %>
-  </div>
-
-  <div class='register-btn'>
-    <%= f.submit "新規登録", class:"register-red-btn" %>
-  </div>
 </div>
-<% end %>

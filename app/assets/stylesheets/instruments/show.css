@@ -1,18 +1,80 @@
-.table_design {
+.stable_design {
   border-collapse: collapse;
   width: 100%;
   max-width: 700px;
+
 }
 
-.table_design th, .table_design td {
+.stable_design th, .stable_design td {
   padding: 1em;
 }
 
-.table_design th {
-  border-right: 1px solid #4d9bc1;
-  font-weight: bold;
+.stable_design th {
+  border-top: 1px solid #BBBBBB;
+  border-bottom: 1px solid #BBBBBB;
+  background-color: #cfe2ff;
   text-align: left;
-  width: 20%;
-  min-width: 4em;
+  width: 140px;
 }
-      
+
+.stable_design td {
+  border-top: 1px solid #BBBBBB;
+  border-bottom: 1px solid #BBBBBB;
+  width: 260px;
+}
+
+.instrument-show {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.instrument-menu {
+  display: flex;
+  align-items: end;
+}
+
+.btn-menu {
+  margin-left: 20px;
+}
+
+.info_date {
+  font-size: 18px;
+  padding: 15px;
+}
+
+.inspection-items {
+  border-collapse: collapse;
+  margin-bottom: 45px;
+}
+
+.inspection-items th, .inspection-items td {
+  padding: 1em;
+}
+
+.inspection-items th {
+  background-color: #cfe2ff;
+  text-align: left;
+}
+
+.inspection-items td {
+  border-bottom: 1px solid #BBBBBB;
+}
+
+th.head-item {
+  width: 100%;
+}
+
+.form-control {
+  height: 40px;
+  width: 150px;
+}
+
+.col-md-6 {
+  margin-right: 20px;
+}
+
+.add-item {
+  display: flex;
+}

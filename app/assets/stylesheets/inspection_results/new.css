@@ -1,3 +1,24 @@
 input[type="checkbox"] {
   transform: scale(2.0);
 }
+.chart-inspection {
+  padding: 40px;
+}
+
+.th-index {
+  width: 10%;
+  text-align: center;
+}
+
+.th-result {
+  width: 30%;
+  text-align: center;
+}
+
+.td-index {
+  text-align: center;
+}
+
+.td-result {
+  text-align: center;
+}

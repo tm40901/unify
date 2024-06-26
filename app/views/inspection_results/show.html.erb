@@ -1,13 +1,22 @@
+<div class="wrapper">
+  <%= render "shared/header" %>
+  <div class="content">
+    <%= render "shared/sidebar" %>
+    <div class="main">
+    
 <h1>点検結果詳細</h1>
 
-<p><strong>ID:</strong> <%= @inspection_results.first.custom_id %></p>
-<p><strong>計測器:</strong> <%= @inspection_results.first.instrument.name %></p>
-<p><strong>点検者:</strong> <%= @inspection_results.first.inspector.last_name + " " + @inspection_results.first.inspector.first_name %></p>
-<p><strong>点検日時:</strong> <%= l @inspection_results.first.created_at %></p>
+      <div class="table-main">
+<div class="chart-inspection">
+<p><span class="table-status"><%= @inspection_results.first.status %></span></p>
 
-<h2>点検項目と結果</h2>
+<p><%= @inspection_results.first.custom_id %></p>
+<p>計測器： <%= @inspection_results.first.instrument.name %></p>
+<p>点検者： <%= @inspection_results.first.inspector.last_name + " " + @inspection_results.first.inspector.first_name %></p>
+<p>点検日時： <%= l @inspection_results.first.created_at %></p>
+
 <table class="table table-hover">
-  <thead class="table-info">
+  <thead class="table-primary">
     <tr>
       <th>No.</th>
       <th>点検項目</th>
@@ -29,5 +38,15 @@
   <%= button_to '承認する', approve_instrument_inspection_result_path(@inspection_results.first.instrument_id, @inspection_results.first.id), method: :patch, class: "btn btn-success" %>
   <%= button_to '承認する', approve_instrument_inspection_result_path(@inspection_results.first.instrument_id, @inspection_results.first.custom_id), method: :patch, class: "btn btn-success" %>
 <% else %>
-  <p><strong>承認ステータス:</strong> <%= @inspection_results.first.status %></p>
+
 <% end %>
+
+
+</div>
+</div>
+
+
+
+    </div>
+  </div>
+</div>

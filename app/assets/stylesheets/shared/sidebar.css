@@ -1,17 +1,16 @@
-.bar {
+.sidebar {
   margin-top: 40px;
 }
 
-.sidebar {
-  width: 250px;
+.sidebar-lists {
+  width: 200px;
   background-color: #444444;
   color: white;
-
   transition: width 0.3s ease, margin-left 0.3s ease;
 }
 
-.sidebar.collapsed {
-  margin-left: -210px;
+.sidebar-lists.collapsed {
+  margin-left: -200px;
 }
 
 .sidebar-toggle {
@@ -28,20 +27,24 @@
   background-color: #555555;
 }
 
-.sidebar nav ul {
+.sidebar-lists nav ul {
   list-style: none;
   padding: 0;
 }
 
-.sidebar nav ul li {
+.sidebar-lists nav ul li {
   padding: 15px;
 }
 
-.sidebar nav ul li a {
+.sidebar-lists li:hover{
+  transform: translate(5px, -5px);
+  background-color: #CC0066;
+}
+
+.sidebar-lists nav ul li a {
   color: white;
   text-decoration: none;
 }
 
-.sidebar nav ul li a:hover {
-  text-decoration: underline;
-}
+
+

@@ -1,4 +1,11 @@
-.table-status {
+.status-pending {
+  padding: 8px;
+  background-color: orange;
+  color: white;
+  border-radius: 15px;
+}
+
+.status-approved {
   padding: 8px;
   background-color: green;
   color: white;

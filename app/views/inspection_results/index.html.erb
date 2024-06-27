@@ -3,38 +3,31 @@
   <div class="content">
     <%= render "shared/sidebar" %>
     <div class="main">
-<h1>点検履歴</h1>
-
+      <h1>点検履歴</h1>
       <div class="table-main">
-<div class="chart-inspection">
-
-
-
-<table class="table table-hover">
-  <thead class="table-primary">
-    <tr>
-      <th>No.</th>
-      <th>計測器</th>
-      <th>点検者</th>
-      <th>点検日時</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @inspection_results.each do |custom_id, results| %>
-      <tr>
-        <td><%= link_to custom_id, inspection_result_path(custom_id) %></td>
-        <td><%= results.first.instrument.name %></td>
-        <td><%= results.first.inspector.last_name + " " + results.first.inspector.first_name %></td>
-        <td><%= l results.first.created_at %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-</div>
-</div>
-
-
+        <div class="chart-inspection">
+          <table class="table table-hover">
+            <thead class="table-primary">
+              <tr>
+                <th>No.</th>
+                <th>計測器</th>
+                <th>点検者</th>
+                <th>点検日時</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @inspection_results.each do |custom_id, results| %>
+                <tr>
+                  <td><%= link_to custom_id, inspection_result_path(custom_id) %></td>
+                  <td><%= results.first.instrument.name %></td>
+                  <td><%= results.first.inspector.last_name + " " + results.first.inspector.first_name %></td>
+                  <td><%= l results.first.created_at %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

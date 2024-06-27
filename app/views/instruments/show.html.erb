@@ -3,91 +3,78 @@
   <div class="content">
     <%= render "shared/sidebar" %>
     <div class="main">
-      
-<h1>計測器詳細</h1>
-<div class="instrument-show">
-  <div class="info_date">
-    登録日： <%= l @instrument.created_at %><br>
-    更新日： <%= l @instrument.updated_at %>
-  </div>
-
-  <table class="stable_design">
-    <tbody>
-      <tr>
-        <th>管理番号</th>
-        <td><%= @instrument.management_number %></td>
-        <th>管理者</th>
-        <td><%= @instrument.admin.last_name + " " + @instrument.admin.first_name %></td>
-      </tr>
-      <tr>
-        <th>計測器名</th>
-        <td><%= @instrument.name %></td>
-        <th>点検者</th>
-        <td><%= @instrument.inspector.last_name + " " + @instrument.inspector.first_name %></td>
-      </tr>
-      <tr>
-        <th>メーカー</th>
-        <td><%= @instrument.manufacturer %></td>
-        <th>点検日</th>
-        <td><%= @instrument.last_inspected_at ? l(@instrument.last_inspected_at) : '未点検' %></td>
-      </tr>
-      <tr>
-        <th>型式</th>
-        <td><%= @instrument.model %></td>
-      </tr>
-      <tr>
-        <th>製造番号</th>
-        <td><%= @instrument.serial_number %></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-
-  <div class="instrument-menu">
-    <h1>点検項目</h1>
-    <div class="btn-menu">
-    <%= link_to "点検実施", new_instrument_inspection_result_path(@instrument.id), class: "btn btn-success btn-lg" %>
-    <%= link_to "点検履歴", instrument_inspection_results_path(@instrument.id), class: "btn btn-primary btn-lg" %>
-    </div>
-  </div>
-
-<div class="instrument-show">
-
-
-
-
-    <table class="inspection-items">
-      <thead class="table-head">
-        <tr>
-          <th class="head-index">No.</th>
-          <th class="head-item">点検項目</th>
-        </tr>
-      </thead>
-      <tbody class="table-body">
-        <% @instrument.inspection_items.reload.each_with_index do |item, index| %>
-          <tr>
-            <td class="item-number"><%= index + 1 %></td>
-            <td><%= item.item %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-  <%= form_with model: [@instrument, @inspection_item], local: true do |f| %>
-    <div class="add-item">
-      <div class="col-md-6">
-        <%= f.text_field :item, placeholder: "追加する点検項目を入力してください", class: "form-control" %>
+      <h1>計測器詳細</h1>
+      <div class="instrument-show">
+        <div class="info_date">
+          登録日： <%= l @instrument.created_at %><br>
+          更新日： <%= l @instrument.updated_at %>
+        </div>
+        <table class="stable_design">
+          <tbody>
+            <tr>
+              <th>管理番号</th>
+              <td><%= @instrument.management_number %></td>
+              <th>管理者</th>
+              <td><%= @instrument.admin.last_name + " " + @instrument.admin.first_name %></td>
+            </tr>
+            <tr>
+              <th>計測器名</th>
+              <td><%= @instrument.name %></td>
+              <th>点検者</th>
+              <td><%= @instrument.inspector.last_name + " " + @instrument.inspector.first_name %></td>
+            </tr>
+            <tr>
+              <th>メーカー</th>
+              <td><%= @instrument.manufacturer %></td>
+              <th>点検日</th>
+              <td><%= @instrument.last_inspected_at ? l(@instrument.last_inspected_at) : '未点検' %></td>
+            </tr>
+            <tr>
+              <th>型式</th>
+              <td><%= @instrument.model %></td>
+            </tr>
+            <tr>
+              <th>製造番号</th>
+              <td><%= @instrument.serial_number %></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <%= f.submit "追加", class: "btn btn-success" %>
-    </div>
-  <% end %>
 
-</div>
+      <div class="instrument-menu">
+        <h1>点検項目</h1>
+        <div class="btn-menu">
+        <%= link_to "点検実施", new_instrument_inspection_result_path(@instrument.id), class: "btn btn-success btn-lg" %>
+        <%= link_to "点検履歴", instrument_inspection_results_path(@instrument.id), class: "btn btn-primary btn-lg" %>
+        </div>
+      </div>
 
+      <div class="instrument-show">
+        <table class="inspection-items">
+          <thead class="table-head">
+            <tr>
+              <th class="head-index">No.</th>
+              <th class="head-item">点検項目</th>
+            </tr>
+          </thead>
+          <tbody class="table-body">
+            <% @instrument.inspection_items.reload.each_with_index do |item, index| %>
+              <tr>
+                <td class="item-number"><%= index + 1 %></td>
+                <td><%= item.item %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= form_with model: [@instrument, @inspection_item], local: true do |f| %>
+          <div class="add-item">
+            <div class="col-md-6">
+              <%= f.text_field :item, placeholder: "追加する点検項目を入力してください", class: "form-control" %>
+            </div>
+              <%= f.submit "追加", class: "btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
-
-
-

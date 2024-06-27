@@ -2,3 +2,9 @@ ja:
   time:
     formats:
       default: "%Y年%m月%d日 %H時%M分"
+  activerecord:
+    attributes:
+      instrument:
+        inspector: 点検者
+        name: 計測器名
+        management_number: 管理番号

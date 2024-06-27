@@ -1,0 +1,9 @@
+.error-alert {
+  background-color: white;
+  border: 5px solid orange;
+  border-radius: 5px;
+  margin: 20px;
+  padding: 10px;
+  font-size: 20px;
+  color: orange;
+}

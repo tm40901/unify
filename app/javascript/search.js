@@ -6,7 +6,6 @@ const search = () => {
   const inspectorModalElement = document.getElementById('inspectorModal');
   const inspectorModal = new bootstrap.Modal(inspectorModalElement);
 
-  // モーダルが表示されたときにユーザー情報をロード
   inspectorModalElement.addEventListener('show.bs.modal', () => {
     fetch('/instruments/load_inspectors')
       .then(response => {

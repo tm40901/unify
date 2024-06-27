@@ -1,5 +1,5 @@
 <header>
-  <h1>UNiFY</h1>
+  <h1><%= link_to 'UNiFY', root_path %></h1>
   <div class="user-info">
     <% if user_signed_in? %>
       <%= link_to "#{current_user.last_name + " " + current_user.first_name}", "#", class: "user-name" %>

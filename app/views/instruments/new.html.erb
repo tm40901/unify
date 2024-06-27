@@ -6,7 +6,9 @@
       <div class="form-header">
         <h1 class='form-header-text'>計測器新規登録</h1>
       </div>
+      
       <%= form_with model: @instrument, local: true do |f| %>
+      <%= render 'shared/error_messages', model: f.object %>
       <div class="form-wrap">
         <table class="table_design">
           <tbody>
@@ -18,7 +20,11 @@
               </td>
             </tr>
             <tr>
-              <th>点検者<span class="indispensable">必須</span></th>
+              <th>
+                <div class="table-label">
+                  点検者<span class="indispensable">必須</span>
+                </div>
+              </th>
               <td>
                 <%= text_field_tag :inspector_employee_number_field, params[:inspector_employee_number_field], readonly: true, class: "input-number" %>
                 <%= text_field_tag :inspector_name_field, params[:inspector_name_field], readonly: true, class:"input-default" %>
@@ -26,13 +32,21 @@
               </td>
             </tr>
             <tr>
-              <th>管理番号</th>
+              <th>
+                <div class="table-label">
+                  管理番号<span class="indispensable">必須</span>
+                </div>
+              </th>
               <td>
                 <%= f.text_field :management_number, class:"input-default", id:"management-number" %>
               </td>
             </tr>
             <tr>
-              <th>計測器名</th>
+              <th>
+                <div class="table-label">
+                  計測器名<span class="indispensable">必須</span>
+                </div>
+              </th>
               <td>
               <%= f.text_field :name, class:"input-default", id:"name" %>
               </td>

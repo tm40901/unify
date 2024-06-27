@@ -14,4 +14,5 @@ Rails.application.routes.draw do
     end
   end
   resources :inspection_results, only: [:show]
+  resources :users, only: [:show]
 end

@@ -3,45 +3,35 @@
   <div class="content">
     <%= render "shared/sidebar" %>
     <div class="main">
-
       <h1><%= @instrument.management_number %> <%= @instrument.name %>の点検項目</h1>
-
-<div class="table-main">
-<div class="chart-inspection">
-
-<%= form_with model: [@instrument, @inspection_result], local: true do |f| %>
-  <table class="table table-hover">
-    <thead class="table-primary">
-      <tr>
-        <th class="th-index">No.</th>
-        <th class="th-item">点検項目</th>
-        <th class="th-result">結果</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @inspection_items.each_with_index do |item, index| %>
-        <tr>
-          <td class="td-index"><%= index + 1 %></td>
-          <td class="td-item"><%= item.item %></td>
-          <td class="td-result">
-            <%= hidden_field_tag "inspection_result[results][#{item.id}]", "0" %>
-            <%= check_box_tag "inspection_result[results][#{item.id}]", "1" %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= f.submit "保存", class: "btn btn-success" %>
-<% end %>
-
-</div>
-</div>
-
-
-
-
+      <div class="table-main">
+        <div class="chart-inspection">
+          <%= form_with model: [@instrument, @inspection_result], local: true do |f| %>
+            <table class="table table-hover">
+              <thead class="table-primary">
+                <tr>
+                  <th class="th-index">No.</th>
+                  <th class="th-item">点検項目</th>
+                  <th class="th-result">結果</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @inspection_items.each_with_index do |item, index| %>
+                  <tr>
+                    <td class="td-index"><%= index + 1 %></td>
+                    <td class="td-item"><%= item.item %></td>
+                    <td class="td-result">
+                      <%= hidden_field_tag "inspection_result[results][#{item.id}]", "0" %>
+                      <%= check_box_tag "inspection_result[results][#{item.id}]", "1" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <%= f.submit "保存", class: "btn btn-success" %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-

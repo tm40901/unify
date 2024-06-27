@@ -12,9 +12,9 @@
 | role            | string | null: false               |
 
 ### Association
-- has_many :instruments
-- has_many :inspection_results
-- has_many :inspection_submissions
+- has_many :admin_instruments, class_name: "Instrument", foreign_key: "admin_id"
+- has_many :inspector_instruments, class_name: "Instrument", foreign_key: "inspector_id"
+- has_many :inspector_inspection_results, class_name: "InspectionResult", foreign_key: "inspector_id"
 
 
 ## instruments テーブル
@@ -30,10 +30,10 @@
 | last_inspected_at | datetime   |                                               |
 
 ### Association
-- belongs_to :user
+- belongs_to :admin, class_name: "User"
+- belongs_to :inspector, class_name: "User"
 - has_many :inspection_items
 - has_many :inspection_results
-- has_many :inspection_submissions
 
 
 ## inspection_items テーブル
@@ -55,26 +55,9 @@
 | inspector             | references | null: false, foreign_key: { to_table: users } |
 | result                | string     | null: false                                   |
 | custom_id             | string     | null: false                                   |
-| inspection_submission | references | null: false, foreign_key: true |
+| status                | string     | null: false                                   |
 
 ### Association
 - belongs_to :instrument
 - belongs_to :inspection_item
-- belongs_to :user
-- belongs_to :inspection_submission
-
-
-## inspection_submissions テーブル
-| Column       | Type       | Options                                       |
-| ------------ | ---------- | --------------------------------------------- |
-| instrument   | references | null: false, foreign_key: true                |
-| inspector    | references | null: false, foreign_key: { to_table: users } |
-| approver     | references | null: false, foreign_key: { to_table: users } |
-| status       | string     | null: false                                   |
-| submitted_at | datetime   |                                               |
-| approved_at  | datetime   |                                               |
-
-### Association
-- belongs_to :instrument
-- belongs_to :user
-- has_many :inspection_results
+- belongs_to :inspector, class_name: "User"

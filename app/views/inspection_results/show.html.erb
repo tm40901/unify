@@ -3,50 +3,46 @@
   <div class="content">
     <%= render "shared/sidebar" %>
     <div class="main">
-    
-<h1>点検結果詳細</h1>
-
+      <h1>点検結果詳細</h1>
       <div class="table-main">
-<div class="chart-inspection">
-<p><span class="table-status"><%= @inspection_results.first.status %></span></p>
+        <div class="chart-inspection">
 
-<p><%= @inspection_results.first.custom_id %></p>
-<p>計測器： <%= @inspection_results.first.instrument.name %></p>
-<p>点検者： <%= @inspection_results.first.inspector.last_name + " " + @inspection_results.first.inspector.first_name %></p>
-<p>点検日時： <%= l @inspection_results.first.created_at %></p>
+          <% if @inspection_results.first.status == 'Pending' %>
+            <p><span class="status-pending"><%= @inspection_results.first.status %></span></p>
+          <% else %>
+            <p><span class="status-approved"><%= @inspection_results.first.status %></span></p>
+          <% end %>
+          <p><%= @inspection_results.first.custom_id %></p>
+          <p>計測器： <%= @inspection_results.first.instrument.name %></p>
+          <p>点検者： <%= @inspection_results.first.inspector.last_name + " " + @inspection_results.first.inspector.first_name %></p>
+          <p>点検日時： <%= l @inspection_results.first.created_at %></p>
 
-<table class="table table-hover">
-  <thead class="table-primary">
-    <tr>
-      <th>No.</th>
-      <th>点検項目</th>
-      <th>結果</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @inspection_results.each_with_index do |result, index| %>
-      <tr>
-        <td><%= index + 1 %></td>
-        <td><%= result.inspection_item.item %></td>
-        <td><%= result.result %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <table class="table table-hover">
+            <thead class="table-primary">
+              <tr>
+                <th>No.</th>
+                <th>点検項目</th>
+                <th>結果</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @inspection_results.each_with_index do |result, index| %>
+                <tr>
+                  <td><%= index + 1 %></td>
+                  <td><%= result.inspection_item.item %></td>
+                  <td><%= result.result %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
 
-<% if @inspection_results.first.status == 'pending' %>
-  <%= button_to '承認する', approve_instrument_inspection_result_path(@inspection_results.first.instrument_id, @inspection_results.first.id), method: :patch, class: "btn btn-success" %>
-  <%= button_to '承認する', approve_instrument_inspection_result_path(@inspection_results.first.instrument_id, @inspection_results.first.custom_id), method: :patch, class: "btn btn-success" %>
-<% else %>
+          <% if @inspection_results.first.status == 'Pending' %>
+            <%= button_to '承認', approve_instrument_inspection_result_path(@inspection_results.first.instrument_id, @inspection_results.first.custom_id), method: :patch, class: "btn btn-success btn-lg" %>
+          <% else %>
+          <% end %>
 
-<% end %>
-
-
-</div>
-</div>
-
-
-
+        </div>
+      </div>
     </div>
   </div>
 </div>

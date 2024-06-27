@@ -1,4 +1,6 @@
 class InstrumentsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @instruments = Instrument.includes(:admin, :inspector).order("created_at DESC")
   end

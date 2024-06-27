@@ -10,3 +10,4 @@ pin "@popperjs/core", to: "https://ga.jspm.io/npm:@popperjs/core@2.11.6/lib/inde
 
 pin "search", to: "search.js"
 pin "sidebar_toggle", to: "sidebar_toggle.js"
+pin "dismiss_alert", to: "dismiss_alert.js"

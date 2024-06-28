@@ -20,3 +20,5 @@ ja:
         last_inspected_at: 最終検査日
         admin: 管理者
         inspector: 点検者
+      inspection_item:
+        item: 点検項目

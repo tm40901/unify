@@ -19,6 +19,7 @@ class InspectionResultsController < ApplicationController
         instrument_id: @instrument.id,
         inspection_item_id: inspection_item_id,
         inspector_id: current_user.id,
+        approver_id: @instrument.admin_id,
         result: result == "1" ? "Pass" : "Fail",
         custom_id: custom_id,
         status: "Pending"

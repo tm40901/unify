@@ -36,9 +36,8 @@
             </tbody>
           </table>
 
-          <% if @inspection_results.first.status == 'Pending' %>
+          <% if @inspection_results.first.status == 'Pending' && current_user.id == @inspection_results.first.approver_id %>
             <%= button_to '承認', approve_instrument_inspection_result_path(@inspection_results.first.instrument_id, @inspection_results.first.custom_id), method: :patch, class: "btn btn-success btn-lg" %>
-          <% else %>
           <% end %>
 
         </div>

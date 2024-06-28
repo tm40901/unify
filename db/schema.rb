@@ -23,11 +23,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_18_054734) do
     t.bigint "instrument_id", null: false
     t.bigint "inspection_item_id", null: false
     t.bigint "inspector_id", null: false
+    t.bigint "approver_id", null: false
     t.string "result", null: false
     t.string "custom_id", null: false
     t.string "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["approver_id"], name: "index_inspection_results_on_approver_id"
     t.index ["inspection_item_id"], name: "index_inspection_results_on_inspection_item_id"
     t.index ["inspector_id"], name: "index_inspection_results_on_inspector_id"
     t.index ["instrument_id"], name: "index_inspection_results_on_instrument_id"
@@ -69,6 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_18_054734) do
   add_foreign_key "inspection_items", "instruments"
   add_foreign_key "inspection_results", "inspection_items"
   add_foreign_key "inspection_results", "instruments"
+  add_foreign_key "inspection_results", "users", column: "approver_id"
   add_foreign_key "inspection_results", "users", column: "inspector_id"
   add_foreign_key "instruments", "users", column: "admin_id"
   add_foreign_key "instruments", "users", column: "inspector_id"

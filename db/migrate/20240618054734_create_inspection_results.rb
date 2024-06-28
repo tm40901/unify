@@ -4,6 +4,7 @@ class CreateInspectionResults < ActiveRecord::Migration[7.0]
       t.references :instrument,      null: false, foreign_key: true
       t.references :inspection_item, null: false, foreign_key: true
       t.references :inspector,       null: false, foreign_key: { to_table: :users }
+      t.references :approver,        null: false, foreign_key: { to_table: :users }
       t.string     :result,          null: false
       t.string     :custom_id,       null: false
       t.string     :status,          null: false

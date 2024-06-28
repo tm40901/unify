@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_sidebar_count
 
   private
   def configure_permitted_parameters
@@ -8,5 +9,12 @@ class ApplicationController < ActionController::Base
                                                        :first_name,
                                                        :department,
                                                        :role])
+  end
+
+  def set_sidebar_count
+    if current_user
+      inspection_results = current_user.inspector_inspection_results.where(status: 'Pending', approver_id: current_user.id)
+      @count = inspection_results.group_by(&:custom_id).count
+    end
   end
 end

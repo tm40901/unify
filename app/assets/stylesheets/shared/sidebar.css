@@ -9,6 +9,15 @@
   transition: width 0.3s ease, margin-left 0.3s ease;
 }
 
+.side-btn {
+  display: flex;
+  align-items: center;
+}
+
+.side-btn-link {
+  margin-left: 20px;
+}
+
 .sidebar-lists.collapsed {
   margin-left: -200px;
 }

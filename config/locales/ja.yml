@@ -14,3 +14,9 @@ ja:
         inspector: 点検者
         name: 計測器名
         management_number: 管理番号
+        manufacturer: メーカー
+        model: 型式
+        serial_number: 製造番号
+        last_inspected_at: 最終検査日
+        admin: 管理者
+        inspector: 点検者

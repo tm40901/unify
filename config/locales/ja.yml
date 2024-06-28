@@ -22,3 +22,9 @@ ja:
         inspector: 点検者
       inspection_item:
         item: 点検項目
+      inspection_result:
+        result: 結果
+        custom_id: カスタムID
+        status: ステータス
+        inspector: 点検者
+        approver: 承認者

@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/yoneya/originalapp/unify/spec/models/inspection_result_spec.rb:35 :
+
+    [1;34m30[0m:         expect(@inspection_result.errors.full_messages).to include([31m[1;31m"[0m[31mステータスを入力してください[1;31m"[0m[31m[0m)
+    [1;34m31[0m:       [32mend[0m
+    [1;34m32[0m:       it [31m[1;31m'[0m[31minsturment_idが紐づいていないと保存できない[1;31m'[0m[31m[0m [32mdo[0m
+    [1;34m33[0m:         @inspection_result.instrument = [1;36mnil[0m
+    [1;34m34[0m:         @inspection_result.valid?
+ => [1;34m35[0m:         binding.pry
+    [1;34m36[0m:         expect(@inspection_result.errors.full_messages).to include([31m[1;31m"[0m[31minstrumentを入力してください[1;31m"[0m[31m[0m)
+    [1;34m37[0m:       [32mend[0m
+    [1;34m38[0m:     [32mend[0m
+    [1;34m39[0m:   [32mend[0m
+    [1;34m40[0m: 
+

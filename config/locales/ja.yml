@@ -4,6 +4,12 @@ ja:
       default: "%Y年%m月%d日 %H時%M分"
   activerecord:
     attributes:
+      user:
+        employee_number: 社員番号
+        last_name: 氏名(姓)
+        first_name: 氏名(名)
+        department: 所属部署
+        role: 権限
       instrument:
         inspector: 点検者
         name: 計測器名

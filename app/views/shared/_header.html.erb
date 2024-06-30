@@ -2,7 +2,7 @@
   <h1><%= link_to 'UNiFY', root_path %></h1>
   <div class="user-info">
     <% if user_signed_in? %>
-      <%= link_to "#{current_user.last_name + " " + current_user.first_name + "（" + current_user.role + "）" }", class: "user-name" %>
+      <%= link_to "#{current_user.last_name + " " + current_user.first_name + "（" + current_user.role + "）" }", users_path, class: "user-name" %>
     <% else %>
     <!--
       <%= link_to 'ログイン', new_user_session_path, class: "login" %>

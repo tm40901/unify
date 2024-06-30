@@ -31,10 +31,12 @@ class InstrumentsController < ApplicationController
   end
 
   def load_inspectors
-    @inspectors = User.select(:employee_number, :last_name, :first_name, :department)
+    @inspectors = User.select(:id, :employee_number, :last_name, :first_name, :department)
 
     respond_to do |format|
-      format.json { render json: @inspectors }
+      format.json { 
+        render json: { inspectors: @inspectors, current_user_id: current_user.id }
+      }
     end
   end
 

@@ -1,0 +1,23 @@
+.chart-profile {
+  padding: 20px;
+}
+
+.table-profile {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 700px;
+  padding: 20px;
+}
+
+.table-profile th, .table-profile td {
+  border-bottom: 2px solid #c1c7c6;
+  padding: 1em;
+}
+
+.table-profile th {
+  border-bottom: 2px solid #4d9bc1;
+  font-weight: bold;
+  text-align: center;
+  width: 20%;
+  min-width: 4em;
+}

@@ -14,7 +14,8 @@ const search = () => {
       })
       .then(data => {
         inspectorList.innerHTML = '';
-        data.forEach(inspector => {
+        data.inspectors.forEach(inspector => {
+          if (inspector.id !== data.current_user_id) {
           const row = document.createElement('tr');
           row.innerHTML = `
             <td>${inspector.employee_number}</td>
@@ -26,6 +27,7 @@ const search = () => {
                         data-inspector-name="${inspector.last_name} ${inspector.first_name}">選択</button></td>
           `;
           inspectorList.appendChild(row);
+          }
         });
 
         document.querySelectorAll('.select-inspector').forEach(button => {

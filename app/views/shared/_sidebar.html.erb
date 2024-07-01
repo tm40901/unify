@@ -3,28 +3,30 @@
   <aside class="sidebar-lists", id="sidebar-lists">
     <nav>
       <ul>
-        <li class="side-btn">
-          <i class="bi bi-house-door-fill"></i>
-          <%= link_to "トップページ", root_path, class: "side-btn-link" %>
-        </li>
-        <% if current_user.role == "管理者" %>
+        <% if user_signed_in? %>
           <li class="side-btn">
-            <i class="bi bi-plus-circle-fill"></i>
-            <%= link_to "計測器新規登録", new_instrument_path, class: "side-btn-link" %>
+            <i class="bi bi-house-door-fill"></i>
+            <%= link_to "トップページ", root_path, class: "side-btn-link" %>
+          </li>
+          <% if current_user.role == "管理者" %>
+            <li class="side-btn">
+              <i class="bi bi-plus-circle-fill"></i>
+              <%= link_to "計測器新規登録", new_instrument_path, class: "side-btn-link" %>
+            </li>
+            <li class="side-btn">
+              <i class="bi bi-person-fill-check"></i>
+              <%= link_to "承認待ち 【 #{@count} 】", user_path(current_user.id), class: "side-btn-link"  %>
+            </li>
+          <% end %>
+          <li class="side-btn">
+            <i class="bi bi-calendar2-week-fill"></i>
+            <%= link_to "予約カレンダー", reservations_path, class: "side-btn-link" %>
           </li>
           <li class="side-btn">
-            <i class="bi bi-person-fill-check"></i>
-            <%= link_to "承認待ち 【 #{@count} 】", user_path(current_user.id), class: "side-btn-link"  %>
+            <i class="bi bi-box-arrow-right"></i>
+            <%= link_to "ログアウト", destroy_user_session_path, data: {turbo_method: :delete}, class: "side-btn-link" %>
           </li>
         <% end %>
-        <li class="side-btn">
-          <i class="bi bi-calendar2-week-fill"></i>
-          <%= link_to "予約カレンダー", reservations_path, class: "side-btn-link" %>
-        </li>
-        <li class="side-btn">
-          <i class="bi bi-box-arrow-right"></i>
-          <%= link_to "ログアウト", destroy_user_session_path, data: {turbo_method: :delete}, class: "side-btn-link" %>
-        </li>
       </ul>
     </nav>
   </aside>

@@ -1,87 +1,53 @@
 <div class="wrapper">
   <%= render "shared/header" %>
   <div class="content">
-    <%= render "shared/sidebar" %>
-    <div class="main">
+    <div class="main-user">
+      <h1>ユーザー登録</h1>
+      <%= form_with model: @user, url: user_registration_path, class: 'registration-main', local: true do |f| %>
+      <%= render 'shared/error_messages', model: f.object %>
+      <div class="form-wrap">
+        <table class="table_design">
+          <tbody>
+            <tr>
+              <th><div class="table-label">メールアドレス<span class="indispensable">必須</span></div></th>
+              <td><%= f.email_field :email, class:"input-default", autofocus: true %></td>
+            </tr>
+            <tr>
+              <th><div class="table-label">パスワード<span class="indispensable">必須</span></div></th>
+              <td><%= f.password_field :password, class:"input-default", placeholder:"6文字以上の半角英数字" %></td>
+            </tr>
+            <tr>
+              <th><div class="table-label">パスワード(確認)<span class="indispensable">必須</span></div></th>
+              <td><%= f.password_field :password_confirmation, class:"input-default", placeholder:"同じパスワードを入力" %></td>
+            </tr>
+            <tr>
+              <th><div class="table-label">社員番号<span class="indispensable">必須</span></div></th>
+              <td><%= f.text_field :employee_number, class:"input-default" %></td>
+            </tr>
+            <tr>
+              <th><div class="table-label">氏名(姓)<span class="indispensable">必須</span></div></th>
+              <td><%= f.text_field :last_name, class:"input-default" %></td>
+            </tr>
+            <tr>
+              <th><div class="table-label">氏名(名)<span class="indispensable">必須</span></div></th>
+              <td><%= f.text_field :first_name, class:"input-default" %></td>
+            </tr>
+            <tr>
+              <th><div class="table-label">所属部署<span class="indispensable">必須</span></div></th>
+              <td><%= f.text_field :department, class:"input-default" %></td>
+            </tr>
+            <tr>
+              <th><div class="table-label">権限付与<span class="indispensable">必須</span></div></th>
+              <td><%= f.text_field :role, class:"input-default" %></td>
+            </tr>
+          </tbody>
+        </table>
 
+        <div class='register-btn'>
+          <%= f.submit "ユーザー登録", class: "btn btn-success btn-lg" %>
+        </div>
+      </div>
+      <% end %>
     </div>
   </div>
 </div>
-
-
-<%= form_with model: @user, url: user_registration_path, class: 'registration-main', local: true do |f| %>
-<div class="form-wrap">
-  <div class="form-header">
-    <h1 class='form-header-text'>
-      ユーザー登録
-    </h1>
-  </diV>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">メールアドレス</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.email_field :email, class:"input-default", id:"email", placeholder:"", autofocus: true %>
-  </div>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">パスワード</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.password_field :password, class:"input-default", id:"password", placeholder:"6文字以上の半角英数字" %>
-  </div>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">パスワード(確認)</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.password_field :password_confirmation, class:"input-default", id:"password-confirmation", placeholder:"同じパスワードを入力して下さい" %>
-  </div>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">社員番号</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.text_field :employee_number, class:"input-default", id:"employee_number", placeholder:"" %>
-  </div>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">氏名(姓)</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.text_field :last_name, class:"input-default", id:"last_name", placeholder:"" %>
-  </div>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">氏名(名)</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.text_field :first_name, class:"input-default", id:"first_name", placeholder:"" %>
-  </div>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">所属部署</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.text_field :department, class:"input-default", id:"department", placeholder:"" %>
-  </div>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">権限付与</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.text_field :role, class:"input-default", id:"role", placeholder:"" %>
-  </div>
-
-  <div class='register-btn'>
-    <%= f.submit "ユーザー登録", class:"register-red-btn" %>
-  </div>
-
-</div>
-<% end %>

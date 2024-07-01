@@ -85,3 +85,7 @@ gem 'pry-rails'
 gem 'rails-i18n'
 
 gem 'simple_calendar'
+
+group :production do
+  gem 'pg'
+end

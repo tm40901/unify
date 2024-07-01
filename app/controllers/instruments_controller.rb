@@ -1,5 +1,6 @@
 class InstrumentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :move_to_index, except: [:index, :show]
 
   def index
     @instruments = Instrument.includes(:admin, :inspector).order("created_at DESC")
@@ -41,6 +42,12 @@ class InstrumentsController < ApplicationController
   end
 
   private
+  def move_to_index
+    unless current_user.role == "管理者"
+      redirect_to action: :index
+    end
+  end
+
   def instrument_params
     params.require(:instrument).permit(:management_number, :name, :manufacturer, :model, :serial_number).merge(admin_id: current_user.id)
   end

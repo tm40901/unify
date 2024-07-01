@@ -1,6 +1,7 @@
 class InspectionItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_instrument
+  before_action :move_to_index
 
   def create
     @inspection_item = @instrument.inspection_items.new(inspection_item_params)
@@ -20,5 +21,11 @@ class InspectionItemsController < ApplicationController
 
   def inspection_item_params
     params.require(:inspection_item).permit(:item)
+  end
+
+  def move_to_index
+    unless current_user.id == @instrument.admin_id
+      redirect_to root_path
+    end
   end
 end

@@ -1,6 +1,7 @@
 class InspectionResultsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_instrument, only: [:index, :new, :create]
+  before_action :move_to_index, except: [:index, :show]
 
   def index
     @inspection_results = @instrument.inspection_results.includes(:instrument).group_by(&:custom_id)
@@ -32,7 +33,6 @@ class InspectionResultsController < ApplicationController
     @inspection_results = InspectionResult.where(custom_id: params[:id])
   end
 
-
   def approve
     inspection_results = InspectionResult.where(custom_id: params[:id])
     inspection_results.update_all(status: "Approved")
@@ -40,7 +40,6 @@ class InspectionResultsController < ApplicationController
   
     redirect_to instrument_path(inspection_results.first.instrument_id), notice: '点検結果が承認されました。'
   end
-
 
   private
   def set_instrument
@@ -54,5 +53,11 @@ class InspectionResultsController < ApplicationController
 
   def inspection_result_params
     params.require(:inspection_result).permit(results: {})
+  end
+
+  def move_to_index
+    unless current_user.id == @instrument.inspector_id
+      redirect_to action: :index
+    end
   end
 end

@@ -38,7 +38,7 @@
             </tr>
             <tr>
               <th><div class="table-label">権限付与<span class="indispensable">必須</span></div></th>
-              <td><%= f.text_field :role, class:"input-default" %></td>
+              <td> <%= f.select :role, options_for_select([['管理者', '管理者'], ['点検者', '点検者']]), { prompt: '選択してください' }, class: 'input-default' %></td>
             </tr>
           </tbody>
         </table>

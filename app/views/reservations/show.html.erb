@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <%= render "shared/header" %>
+  <div class="content">
+    <%= render "shared/sidebar" %>
+    <div class="main">
+      <h1>予約詳細</h1>
+      <div class="table-main">
+        <div class="reservation-form">
+          <table class="table-profile">
+            <tbody>
+              <tr>
+                <th>予約者</th>
+                <td><%=  @reservation.user.last_name + " " + @reservation.user.first_name %></td>
+              </tr>
+              <tr>
+                <th>管理番号</th>
+                <td><%= @reservation.instrument.management_number %></td>
+              </tr>
+              <tr>
+                <th>計測器名</th>
+                <td><%= @reservation.instrument.name %></td>
+              </tr>
+              <tr>
+                <th>開始時間</th>
+                <td><%= l @reservation.start_time %></td>
+              </tr>
+              <tr>
+                <th>終了時間</th>
+                <td><%= l @reservation.end_time %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

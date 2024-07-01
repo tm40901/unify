@@ -28,3 +28,7 @@ ja:
         status: ステータス
         inspector: 点検者
         approver: 承認者
+      reservation:
+        instrument: 計測器名
+        start_time: 開始時間
+        end_time: 終了時間

@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   end
   resources :inspection_results, only: [:show]
   resources :users, only: [:index, :show]
+  resources :reservations, only: [:index, :new, :show, :create]
 end

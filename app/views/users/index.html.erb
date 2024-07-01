@@ -6,25 +6,24 @@
       <h1><%= current_user.last_name + " " + current_user.first_name + " " %>さんのマイページ</h1>
       <div class="table-main">
         <div class="chart-profile">
-        <table class="table-profile">
-          <tbody>
-            <tr>
-              <th>社員番号</th>
-              <td><%= current_user.employee_number %></td>
-            </tr>
-            <tr>
-              <th>所属部署</th>
-              <td><%= current_user.department %></td>
-            </tr>
-            <tr>
-              <th>ユーザー権限</th>
-              <td><%= current_user.role %></td>
-            </tr>
-          </tbody>
-        </table>
+          <table class="table-profile">
+            <tbody>
+              <tr>
+                <th>社員番号</th>
+                <td><%= current_user.employee_number %></td>
+              </tr>
+              <tr>
+                <th>所属部署</th>
+                <td><%= current_user.department %></td>
+              </tr>
+              <tr>
+                <th>ユーザー権限</th>
+                <td><%= current_user.role %></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-
 
       <div class="table-main">
         <div class="table-title">

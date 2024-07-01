@@ -3,6 +3,7 @@ class Instrument < ApplicationRecord
   belongs_to :inspector, class_name: "User"
   has_many   :inspection_items
   has_many   :inspection_results
+  has_many   :reservations
 
   with_options presence: true do
     validates :name

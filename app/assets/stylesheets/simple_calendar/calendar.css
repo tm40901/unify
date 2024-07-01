@@ -1,0 +1,43 @@
+.calendar-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 5px;
+}
+
+.calendar-title {
+  font-size: 28px;
+}
+
+.calendar-nav {
+  font-size: 20px;
+}
+
+.calendar-nav a {
+  text-decoration: none;
+}
+
+.today-nav {
+  margin: 0 10px;
+}
+
+.simple-calendar {
+  .wday-0 {
+    background-color: pink;
+  }
+  .wday-6 {
+    background-color: lightcyan;
+  }
+  .prev-month {
+    background-color: whitesmoke;
+  }
+  .next-month {
+    background-color: whitesmoke;
+  }
+  .has-events {
+    background: #98fb98;
+  }
+  .today {
+    background-color: khaki;
+  }
+ }

@@ -16,6 +16,7 @@
 - has_many :inspector_instruments, class_name: "Instrument", foreign_key: "inspector_id"
 - has_many :inspector_inspection_results, class_name: "InspectionResult", foreign_key: "inspector_id"
 - has_many :approver_inspection_results, class_name: "InspectionResult", foreign_key: "approver_id"
+- has_many :reservations
 
 
 ## instruments テーブル
@@ -35,6 +36,7 @@
 - belongs_to :inspector, class_name: "User"
 - has_many :inspection_items
 - has_many :inspection_results
+- has_many :reservations
 
 
 ## inspection_items テーブル
@@ -64,3 +66,16 @@
 - belongs_to :inspection_item
 - belongs_to :inspector, class_name: "User"
 - belongs_to :approver, class_name: "User"
+
+
+## reservations テーブル
+| Column     | Type       | Options                        |
+| ---------- | ---------- | -------------------------------|
+| instrument | references | null: false, foreign_key: true |
+| user       | references | null: false, foreign_key: true |
+| start_time | datetime   | null: false                    |
+| end_time   | datetime   | null: false                    |
+
+### Association
+- belongs_to :instrument
+- belongs_to :user

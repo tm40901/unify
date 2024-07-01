@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_18_054734) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_30_005245) do
   create_table "inspection_items", charset: "utf8", force: :cascade do |t|
     t.bigint "instrument_id", null: false
     t.string "item", null: false
@@ -51,6 +51,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_18_054734) do
     t.index ["management_number"], name: "index_instruments_on_management_number", unique: true
   end
 
+  create_table "reservations", charset: "utf8", force: :cascade do |t|
+    t.bigint "instrument_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["instrument_id"], name: "index_reservations_on_instrument_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -75,4 +86,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_18_054734) do
   add_foreign_key "inspection_results", "users", column: "inspector_id"
   add_foreign_key "instruments", "users", column: "admin_id"
   add_foreign_key "instruments", "users", column: "inspector_id"
+  add_foreign_key "reservations", "instruments"
+  add_foreign_key "reservations", "users"
 end

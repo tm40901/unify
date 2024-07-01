@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :inspector_inspection_results, class_name: "InspectionResult", foreign_key: "inspector_id"
   has_many :approver_inspection_results,  class_name: "InspectionResult", foreign_key: "approver_id"
 
+  has_many :reservations
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
   
   with_options presence: true do

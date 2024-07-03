@@ -4,6 +4,14 @@ UNiFY
 # アプリケーション概要
 計測器の台帳管理・点検・承認申請まで、一元で管理することのできるアプリケーション
 
+# 利用方法
+
+# データベース設計
+[![Image from Gyazo](https://i.gyazo.com/f9ea8d285d262852611f6349166bec19.png)](https://gyazo.com/f9ea8d285d262852611f6349166bec19)
+
+# 画面遷移図
+[![Image from Gyazo](https://i.gyazo.com/0048856a92e07188363c5bc25314a011.png)](https://gyazo.com/0048856a92e07188363c5bc25314a011)
+
 # テーブル設計
 
 ## users テーブル

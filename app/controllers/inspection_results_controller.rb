@@ -1,7 +1,7 @@
 class InspectionResultsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_instrument, only: [:index, :new, :create]
-  before_action :move_to_index, except: [:index, :show]
+  before_action :set_instrument, only: [:index, :new, :create, :approve]
+  before_action :move_to_index, except: [:index, :show, :approve]
 
   def index
     @inspection_results = @instrument.inspection_results.includes(:instrument).group_by(&:custom_id)
@@ -34,11 +34,15 @@ class InspectionResultsController < ApplicationController
   end
 
   def approve
-    inspection_results = InspectionResult.where(custom_id: params[:id])
-    inspection_results.update_all(status: "Approved")
-    inspection_results.first.instrument.update(last_inspected_at: inspection_results.first.created_at)
-  
-    redirect_to instrument_path(inspection_results.first.instrument_id), notice: '点検結果が承認されました。'
+    if current_user.id == @instrument.admin_id
+      inspection_results = InspectionResult.where(custom_id: params[:id])
+      inspection_results.update_all(status: "Approved")
+      inspection_results.first.instrument.update(last_inspected_at: inspection_results.first.created_at)
+    
+      redirect_to instrument_path(inspection_results.first.instrument_id), notice: '点検結果が承認されました。'
+    else
+      redirect_to action: :index
+    end
   end
 
   private

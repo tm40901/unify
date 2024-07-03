@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   def set_sidebar_count
     if current_user
-      inspection_results = current_user.inspector_inspection_results.where(status: 'Pending', approver_id: current_user.id)
+      inspection_results = InspectionResult.where(status: 'Pending', approver_id: current_user.id)
       @count = inspection_results.group_by(&:custom_id).count
     end
   end

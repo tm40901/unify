@@ -32,7 +32,7 @@ class InstrumentsController < ApplicationController
   end
 
   def load_inspectors
-    @inspectors = User.select(:id, :employee_number, :last_name, :first_name, :department)
+    @inspectors = User.select(:id, :employee_number, :last_name, :first_name, :department).where(role: "点検者")
 
     respond_to do |format|
       format.json { 

@@ -19,8 +19,7 @@ const search = () => {
           const row = document.createElement('tr');
           row.innerHTML = `
             <td>${inspector.employee_number}</td>
-            <td>${inspector.last_name}</td>
-            <td>${inspector.first_name}</td>
+            <td>${inspector.last_name} ${inspector.first_name}</td>
             <td>${inspector.department}</td>
             <td><button type="button" class="btn btn-primary select-inspector" 
                         data-inspector-employee-number="${inspector.employee_number}"

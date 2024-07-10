@@ -11,13 +11,14 @@ https://originalapp-unify-40901.onrender.com
 
 
 # テスト用アカウント
+- Basic認証ID：admin
+- Basic認証パスワード：2222
 ## 管理者
-メールアドレス：admin@test.com<br>
-パスワード：admin2024
-
+- メールアドレス：admin@test.com<br>
+- パスワード：admin2024
 ## 点検者
-メールアドレス：inspector@test.com<br>
-パスワード：inspector2024
+- メールアドレス：inspector@test.com<br>
+- パスワード：inspector2024
 
 
 # 利用方法
@@ -40,6 +41,42 @@ https://originalapp-unify-40901.onrender.com
 ## 解決する課題・提供価値
 - 情報の一元化：部署ごとに分散している計測器管理情報を一元化し、全社的な統一された管理を実現することが可能になります。
 - 工数削減： 計測器の管理、点検、承認を一括で行えることにより、管理にかかる工数の削減が期待できます。
+
+
+# 実装機能について
+## ユーザー管理機能
+UNiFYは使用するには、ユーザー登録する必要があります。ユーザー情報を登録し、メールアドレスとパスワードでログインすることができます。
+また、ログイン後はヘッダーの登録者名からマイページに遷移することができます。
+### ユーザー登録
+[![Image from Gyazo](https://i.gyazo.com/0d949ba1981223da9a3af26a2f922c8a.png)](https://gyazo.com/0d949ba1981223da9a3af26a2f922c8a)
+### ログイン機能
+[![Image from Gyazo](https://i.gyazo.com/9b3e506f18ddfaf0283d723dece09eaa.png)](https://gyazo.com/9b3e506f18ddfaf0283d723dece09eaa)
+### マイページ機能
+[![Image from Gyazo](https://i.gyazo.com/4741cb7cd63c389fb128c92299afd7bf.png)](https://gyazo.com/4741cb7cd63c389fb128c92299afd7bf)
+
+## サイドバー
+サイドバーから任意の機能ページに遷移することができます。管理者と点検者によって、表示内容は異なります。
+[![Image from Gyazo](https://i.gyazo.com/70b2b1b4172c60e6af096c9d36a7b4d6.gif)](https://gyazo.com/70b2b1b4172c60e6af096c9d36a7b4d6)
+
+## 計測器一覧・詳細の閲覧機能
+トップページに登録されている計測器の一覧が表示され、管理番号から詳細画面へ遷移できます。
+[![Image from Gyazo](https://i.gyazo.com/887d5995e58f98e69c703f30cb0fb11c.gif)](https://gyazo.com/887d5995e58f98e69c703f30cb0fb11c)
+
+## 新規計測器の登録機能
+管理者であれば、計測器を新規登録することができます。検索ボタンでモーダルウィンドウが表示され、点検者を選択することができます。
+[![Image from Gyazo](https://i.gyazo.com/643dd55903402c3e1ca5123b2a89d471.gif)](https://gyazo.com/643dd55903402c3e1ca5123b2a89d471)
+
+## 計測器の点検機能
+点検者であれば、該当する計測器の詳細画面から点検実施ボタンから、点検を実施することができます。また、保存すると同時に管理者のもとに承認依頼の申請が送られます。
+[![Image from Gyazo](https://i.gyazo.com/8396d6865dda2e4a53a812f76bf2053a.gif)](https://gyazo.com/8396d6865dda2e4a53a812f76bf2053a)
+
+## 点検結果の承認機能
+現在の承認依頼数がサイドバーに表示されます。管理者であれば、承認待ちから各点検結果の承認を実施することができます。
+[![Image from Gyazo](https://i.gyazo.com/107d258c2ced58b410c9e23c513b2dc4.gif)](https://gyazo.com/107d258c2ced58b410c9e23c513b2dc4)
+
+## 計測器の予約機能
+予約カレンダーから、計測の予約をすることができます。また、予約内容・詳細はカレンダー内に反映されます。
+[![Image from Gyazo](https://i.gyazo.com/e10178bacc4fb32f8df5a531d48f80f2.gif)](https://gyazo.com/e10178bacc4fb32f8df5a531d48f80f2)
 
 
 # データベース設計
@@ -126,9 +163,12 @@ https://originalapp-unify-40901.onrender.com
 - belongs_to :instrument
 - belongs_to :user
 
+
 # 工夫したポイント
 - ユーザーの負担を軽減するため、シンプルかつ直感的に操作できるユーザーインターフェースを意識してデザインしました。
 - 本アプリケーションは Ruby on Rails 7 を使用して開発しました。Railsの基本機能に加え、動的なユーザー体験を提供するために JavaScript を積極的に採用しました。ユーザーの操作感を向上させるため、モーダルウィンドウ や サイドバー の表示切替を実装しました。
 
+
 # 実装予定の機能
 - トップページ、予約カレンダーにおける検索機能
+- 計測器廃番の処理

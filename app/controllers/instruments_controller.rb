@@ -4,6 +4,16 @@ class InstrumentsController < ApplicationController
 
   def index
     @instruments = Instrument.includes(:admin, :inspector).order("created_at DESC")
+    
+    if params[:admin_name].present?
+      admin_ids = User.where("last_name LIKE ? OR first_name LIKE ?", "%#{params[:admin_name]}%", "%#{params[:admin_name]}%").pluck(:id)
+      @instruments = @instruments.where(admin_id: admin_ids)
+    end
+
+    if params[:inspector_name].present?
+      inspector_ids = User.where("last_name LIKE ? OR first_name LIKE ?", "%#{params[:inspector_name]}%", "%#{params[:inspector_name]}%").pluck(:id)
+      @instruments = @instruments.where(inspector_id: inspector_ids)
+    end
   end
 
   def new
@@ -39,6 +49,15 @@ class InstrumentsController < ApplicationController
         render json: { inspectors: @inspectors, current_user_id: current_user.id }
       }
     end
+  end
+
+  def search
+    @instruments = Instrument.includes(:admin, :inspector)
+                              .where('management_number LIKE ? OR name LIKE ? OR admins_users.last_name LIKE ? OR inspectors_users.last_name LIKE ?',
+                                     "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
+                              .references(:admin, :inspector)
+                              .order("created_at DESC")
+    render :index
   end
 
   private

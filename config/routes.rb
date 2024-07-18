@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :instruments do
     collection do
       get :load_inspectors
-    end  
+    end
     resources :inspection_items, only: [:create]
     resources :inspection_results, only: [:index, :new, :create] do
       member do

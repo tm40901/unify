@@ -31,3 +31,4 @@ const sidebar_toggle = () => {
 
 window.addEventListener("turbo:load", sidebar_toggle);
 window.addEventListener("turbo:render", sidebar_toggle);
+

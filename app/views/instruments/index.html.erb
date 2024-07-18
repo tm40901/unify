@@ -4,6 +4,22 @@
     <%= render "shared/sidebar" %>
     <div class="main">
       <h1>トップページ</h1>
+
+      <div class="search-form">
+        <%= form_with url: instruments_path, method: :get, local: true do %>
+          <div class="search-form-group">
+            <%= label_tag :admin_name, "管理者名：" %>
+            <%= text_field_tag :admin_name, params[:admin_name], placeholder: "管理者名を入力" %>
+          </div>
+          <div class="search-form-group">
+            <%= label_tag :inspector_name, "点検者名：" %>
+            <%= text_field_tag :inspector_name, params[:inspector_name], placeholder: "点検者名を入力" %>
+          </div>
+          <%= submit_tag "検索", class: "btn btn-primary" %>
+          <%= link_to "クリア", instruments_path, class: "btn btn-secondary" %>
+        <% end %>
+      </div>
+      
       <div class="table-main">
         <div class="table-title">▼ 計測器一覧</div> 
         <div class="chart">
